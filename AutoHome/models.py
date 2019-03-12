@@ -6,8 +6,10 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from datetime import datetime
+# TODO check if the database is appropriate to the problem we're solving (i.e. AutoHome)
 
-# TODO fix calculate time
+
+# TODO check other functions of Timer
 
 
 class Timer(models.Model):
@@ -15,9 +17,7 @@ class Timer(models.Model):
     to_time = models.DateTimeField(null=True)
 
     def calculate_time(self):
-
-        difference = datetime.combine(self.from_time + self.to_time)
-        return datetime.strptime(difference, "%a %b %d %H:%M:%S %Y")
+        return self.to_time - self.from_time
 
     def set_time(self, from_time, to_time):
         self.from_time = from_time
@@ -50,6 +50,9 @@ class Device(models.Model):
         return self.name + ' in the ' + self.room.name
 
 
+# TODO test device and sensor model
+
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     last_accessed = models.DateTimeField(null=True)
@@ -77,6 +80,7 @@ class DeviceList(models.Model):
     def __str__(self):
         return self.device.name + 'is scheduled ' + self.from_to_time.get_time()
 
+# TODO test sensor list
 
 class SensorList(models.Model):
     alarm_value = models.IntegerField(default=50)

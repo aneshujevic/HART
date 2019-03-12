@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.test import TestCase
 from django.utils import timezone
-from datetime import timedelta, datetime
+from datetime import timedelta
 
 from .models import *
 
@@ -16,4 +16,4 @@ class DeviceModelTest(TestCase):
     device = Device(modified=modified, power=power, room=room, timer=timer, name='test_device')
 
     def test_device_timer_calculate_time(self):
-        self.device.timer.calculate_time()
+        print(self.device.timer.calculate_time())
