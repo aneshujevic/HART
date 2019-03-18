@@ -1,0 +1,18 @@
+{% if error_messages %}
+    {{ error_messages }}
+{% endif %}
+
+<form method="post" action="{% url 'AutoHome:login' %}">
+    {% csrf_token %}
+
+    <label for="id_username">Username:</label>
+    <input type="text" name="username" id="id_username" placeholder="Enter your username here.." required>
+    <br>
+
+    <label for="id_password">Password:</label>
+    <input type="password" name="password" minlength="8" placeholder="Enter your password here.." id="id_password" required>
+
+    <br>
+
+    <button>Submit</button>
+</form>
